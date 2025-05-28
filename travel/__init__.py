@@ -1,9 +1,13 @@
 from flask import Flask
+from flask_bootstrap import Bootstrap5
 
 def create_app():
     app = Flask(__name__)
     
-    #add Blueprints
+    Bootstrap5(app)
+
+    app.secret_key ='somesecret'
+
     from . import views
     app.register_blueprint(views.mainbp)
     from . import destinations
