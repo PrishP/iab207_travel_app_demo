@@ -1,13 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .models import Destination, Comment
-from .forms import DestinationForm
- 
+from .forms import DestinationForm, CommentForm
+
 destbp = Blueprint('destination', __name__, url_prefix='/destinations')
 
 @destbp.route('/<id>')
 def show(id):
     destination = get_destination()
-    return render_template('destinations/show.html', destination=destination)
+    cform = CommentForm()    
+    return render_template('destinations/show.html', destination=destination, form=cform)
 
 @destbp.route('/create', methods = ['GET', 'POST'])
 def create():
@@ -17,6 +18,13 @@ def create():
     print('Successfully created new travel destination')
     return redirect(url_for('destination.create'))
   return render_template('destinations/create.html', form=form)
+
+@destbp.route('/<id>/comment', methods = ['GET', 'POST'])
+def comment(id):
+  form = CommentForm()
+  if form.validate_on_submit():	#this is true only in case of POST method
+    print(f"The following comment has been posted: {form.text.data}")
+  return redirect(url_for('destination.show', id=1))
 
 def get_destination():
   b_desc = """Brazil is considered an advanced emerging economy.
