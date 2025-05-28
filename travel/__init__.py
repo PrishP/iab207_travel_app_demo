@@ -6,6 +6,8 @@ def create_app():
     #add Blueprints
     from . import views
     app.register_blueprint(views.mainbp)
+    from . import destinations
+    app.register_blueprint(destinations.destbp)
 
     return app
 
