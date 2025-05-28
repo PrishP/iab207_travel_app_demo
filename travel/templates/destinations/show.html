@@ -6,13 +6,13 @@
     <div class="row mt-5 mb-3">  
       <div class="col-md-12">  
         <div class="float-left">  
-          <h1 class="mb-0">Italy</h1>  
+          <h1 class="mb-0">{{destination.name}}</h1>  
           <p>Popular Destination</p>  
         </div>  
  
         <div class="float-right text-right">  
           <p class="mb-0">1 AUD equals</p>  
-          <h2 id="exchange-rate">0.62 EUR</h2>  
+          <h2 id="exchange-rate">0.62 {{destination.currency}}</h2>  
         </div>  
       </div>  
     </div>  
@@ -23,11 +23,11 @@
         <div class="card my-3">  
           <div class="card-body">  
             <div class="media">  
-              <img class="align-self-start mr-3" src="https://media-cdn.tripadvisor.com/media/photo-w/06/64/e9/88/roma.jpg" alt="Rome, Italy" style="max-width: 250px;">  
+              <img class="align-self-start mr-3" src="{{destination.image}}">  
               <div class="media-body">  
                 <small class="font-weight-bold text-muted">Stay 2 nights</small>  
-                <h5 class="mt-0">Italy</h5>  
-                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>  
+                <h5 class="mt-0">{{destination.name}}</h5>  
+                <p>{{destination.description}}</p>  
                 <a href="#" class="btn btn-danger">Book Now</a>  
               </div>  
             </div>  
@@ -44,10 +44,12 @@
     </div>  
  
     <div class="row border-bottom">  
+      {% for comment in destination.comments %}
       <div class="col-md-12">  
-        <b>Username <span class="ml-2 text-muted">January 2024</span></b>  
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>  
-      </div>  
+        <b>{{comment.user}} <span class="ml-2 text-muted">January 2024</span></b>
+        <p>{{comment.text}}</p>  
+      </div> 
+      {% endfor %} 
     </div>  
   </div> 
 
